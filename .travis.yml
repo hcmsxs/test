@@ -1,0 +1,41 @@
+language: node_js
+node_js: stable
+
+# Travis-CI Caching
+cache:
+  directories:
+    - node_modules
+
+# S: Build Lifecycle
+install:
+  - npm install
+
+before_script:
+  - npm install gitbook-cli -g
+
+
+script:
+  - gitbook build
+  - cd ./_book
+  - git init
+  - git config user.name "hcmsxs"
+  - git config user.email "hcmsxs@gmail.com"
+  - git add .
+  - git commit -m "Update docs"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+  - git push --force --quiet "https://${CO_TOKEN}@${CO_REF}" master:master
+
+
+# after_script:
+#   - cd ../
+#   - chmod +x ./bin/autoissue
+#   - ./bin/autoissue
+# E: Build LifeCycle
+
+branches:
+  only:
+    - hexo
+env:
+  global:
+    - GH_REF: github.com/hcmsxs/test.git
+    - CO_REF: git.dev.tencent.com/hcmsxs/test.git
