@@ -34,7 +34,7 @@ script:
 
 branches:
   only:
-    - hexo
+    - master
 env:
   global:
     - GH_REF: github.com/hcmsxs/test.git
