@@ -22,7 +22,6 @@ script:
   - git config user.email "hcmsxs@gmail.com"
   - git add .
   - git commit -m "Update docs"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
   - git push --force --quiet "https://hcmsxs:${CO_TOKEN}@${CO_REF}" master:master
 
 
@@ -34,7 +33,7 @@ script:
 
 branches:
   only:
-    - master
+    - new
 env:
   global:
     - GH_REF: github.com/hcmsxs/test.git
